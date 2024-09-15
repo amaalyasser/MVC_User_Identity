@@ -1,0 +1,10 @@
+﻿@model Course;
+<div class="card" style="width: 150px;">
+    <p class="card-text">@Model.Name</p>
+    <p class="card-text">@Model.MinDegree</p>
+    <p class="card-text">@Model.Degree</p>
+</div>
+<br />
+<div>
+    <a href="@Url.Action("Index", "Course")" class="btn btn-primary">back</a>
+</div>

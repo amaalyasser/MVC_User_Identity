@@ -1,0 +1,46 @@
+﻿@model Identity.Models.Department
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add Department</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" action="@Url.Action(Model.Id != 0 ? "Update" : "Submit", "Department")">
+            @Html.HiddenFor(x => x.Id)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.ManagerName, new { @class = "control-label" })
+                @Html.TextBoxFor(m => m.ManagerName, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.ManagerName, "", new { @class = "text-danger" })
+            </div>
+            
+
+            <div class="form-group">
+                @if (Model.Id != 0)
+                {
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                }
+                else
+                {
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                }
+                <a href="@Url.Action("Index", "Department")" class="btn btn-primary">back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

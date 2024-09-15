@@ -1,0 +1,10 @@
+﻿
+@model Department;
+<div class="card" style="width: 150px;">
+        <p class="card-text">@Model.Name</p>
+        <p class="card-text">@Model.ManagerName</p>
+ </div>
+ <br/>
+    <div>
+    <a href="@Url.Action("Index", "Department")" class="btn btn-primary">back</a>
+</div>

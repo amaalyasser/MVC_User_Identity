@@ -1,0 +1,48 @@
+﻿
+@model List<Course>
+<button type="button" class="btn btn-primary" onclick="location.href='@Url.Action("Add", "Course")'">Add New Course</button>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Min Degree</th>
+            <th scope="col">Max Degree</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <td>@item.Name</td>
+                <td>@item.MinDegree</td>
+                <td>@item.Degree</td>
+                <td>
+                <a href="@Url.Action("GetCoursebyId", "Course", new { id = @item.Id })" class="btn btn-primary">Details</a>
+                <a href="@Url.Action("Add", "Course", new { id = @item.Id })" class="btn btn-success">Edit</a>
+                <a href="#" onclick="deleteCourse(@item.Id)" class="btn btn-danger">Delete</a>
+                </td>
+              
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>
+<script>
+    function deleteCourse(id) {
+        if (confirm("Are you sure you want to delete this Course?")) {
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("Delete", "Course")",
+                data: { id: id },
+                success: function () {
+                    window.location.href = "@Url.Action("Index", "Course")";
+                }
+            });
+        }
+    }
+</script>

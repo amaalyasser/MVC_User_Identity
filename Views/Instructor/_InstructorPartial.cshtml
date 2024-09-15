@@ -1,0 +1,28 @@
+﻿
+
+@model Instructor;
+<div class="card" style="width: 50rem;">
+    <img class="card-img-top" src="/Images/@Model.Img" style="height:100px;width:100px" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Id</h5>
+        <p class="card-text">@Model.Name</p>
+        <p class="card-text">@Model.Address</p>
+        <p class="card-text">@Model.Salary</p>
+
+
+        <p class="card-text" style="color:red">------Department Information-----</p>
+        <p class="card-text">@Model.Department.Name</p>
+        <p class="card-text">@Model.Department.ManagerName</p>
+        <div>
+        @if(ViewBag.Flag == true)
+        {
+      
+            <a href="@Url.Action("GetInstructorbyId", "Instructor", new { id = @Model.Id })" class="btn btn-primary">Details</a>
+            <a href="@Url.Action("Add", "Instructor", new { id = @Model.Id })" class="btn btn-success">Edit</a>
+            <a href="#" class="btn btn-danger" onclick="deleteInstructor(@Model.Id)">Delete</a>
+        }else{
+            <a href="@Url.Action("Index", "Instructor")" class="btn btn-primary">back</a>    
+        }
+        </div>
+    </div>
+</div>
